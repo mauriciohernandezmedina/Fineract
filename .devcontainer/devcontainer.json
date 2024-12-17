@@ -11,7 +11,7 @@
   "runServices": ["mariadb"],
 
   // Expone puertos: base de datos y el que use Fineract (8443 por defecto)
-  "forwardPorts": [3306, 8443],
+  "forwardPorts": [3306, 8080],
 
   // Habilitar Docker-in-Docker si deseas hacer builds Docker dentro del contenedor "dev"
   "features": {
