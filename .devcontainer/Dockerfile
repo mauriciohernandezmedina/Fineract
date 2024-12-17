@@ -1,12 +1,18 @@
-# .devcontainer/Dockerfile
-FROM mcr.microsoft.com/devcontainers/java:17
+# Contenedor base: Ubuntu 22.04
+FROM ubuntu:22.04
 
-# Instalar gradle, si lo deseas (ya viene con Gradle en muchos casos)
-# RUN apt-get update && apt-get install -y gradle
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Variables de entorno, etc.
-ENV FINERACT_HIKARI_PASSWORD=mysql
-ENV FINERACT_HIKARI_USERNAME=root
+# Instalar herramientas básicas
+RUN apt-get update && apt-get install -y \
+    curl wget unzip git nano ca-certificates \
+    software-properties-common \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Cualquier otra instalación adicional que requieras
-# RUN apt-get install -y <otras herramientas>
+# Instalar Java 17
+RUN apt-get update && apt-get install -y openjdk-17-jdk && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+WORKDIR /workspace
