@@ -23,4 +23,7 @@ services:
       - "3306:3306"
     # Volumen persistente: la carpeta local ./docker-data/mariadb
     volumes:
-      - ../docker-data/mariadb:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:
