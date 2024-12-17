@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  # Servicio principal de desarrollo con Java y Gradle
+  dev:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    # Montamos el repositorio en /workspace dentro del contenedor dev
+    volumes:
+      - ..:/workspace:cached
+    # Podrías exponer puertos si gustas, aunque devcontainer.json manejará el port-forward
+    # ports:
+    #   - "8443:8443"
+
+  # Servicio de MariaDB con persistencia
+  mariadb:
+    image: mariadb:11.4
+    container_name: mariadb-11.4
+    environment:
+      - MARIADB_ROOT_PASSWORD=mysql
+    # Mapeo del puerto para acceder desde la máquina local (o Codespaces)
+    ports:
+      - "3306:3306"
+    # Volumen persistente: la carpeta local ./docker-data/mariadb
+    volumes:
+      - ../docker-data/mariadb:/var/lib/mysql
