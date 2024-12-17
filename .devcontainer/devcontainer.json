@@ -23,8 +23,7 @@
     "vscode": {
       "extensions": [
         "vscjava.vscode-java-pack",
-        "richardwillis.vscode-gradle",
-        "redhat.vscode-yaml"
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
