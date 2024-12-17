@@ -4,7 +4,7 @@ services:
   dev:
     build:
       context: .
-      dockerfile: .devcontainer/Dockerfile
+      dockerfile: Dockerfile
     # Montamos el repositorio en /workspace dentro del contenedor dev
     volumes:
       - ..:/workspace:cached
