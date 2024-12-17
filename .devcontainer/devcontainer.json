@@ -1,0 +1,37 @@
+{
+  "name": "Apache Fineract Codespace",
+
+  // Usamos docker-compose.yml en lugar de una sola imagen Docker
+  "dockerComposeFile": "docker-compose.yml",
+
+  // Indicamos que "dev" es el servicio principal donde tendremos la sesión (shell, VS Code, etc.)
+  "service": "dev",
+
+  // Al iniciar el Codespace, que también ejecute (levante) los servicios listados.
+  "runServices": ["mariadb"],
+
+  // Expone puertos: base de datos y el que use Fineract (8443 por defecto)
+  "forwardPorts": [3306, 8443],
+
+  // Habilitar Docker-in-Docker si deseas hacer builds Docker dentro del contenedor "dev"
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {}
+  },
+
+  // Extensiones recomendadas para Java y Gradle
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "richardwillis.vscode-gradle",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+
+  // Donde se montará el workspace en el contenedor principal
+  "workspaceFolder": "/workspace",
+
+  // Se ejecuta tras crear el contenedor, útil para verificar o inicializar algo
+  "postCreateCommand": "echo 'Dev container listo. Ejecuta ./gradlew createDB y bootRun para iniciar Fineract.'"
+}
